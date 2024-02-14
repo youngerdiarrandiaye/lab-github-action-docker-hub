@@ -10,7 +10,7 @@
 </parent>
 <groupId>com.uasz</groupId>
 <artifactId>enseign</artifactId>
-<version>0.0.1-SNAPSHOT</version>
+<version>v.1.1</version>
 <packaging>jar</packaging>
 <name>enseign</name>
 <description>Ce projet vise à créer une application orientée services, exploitant des technologies telles que Spring Boot, Spring Cloud, SOAP, REST et MySQL. Destinée au chef du département d&apos;informatique.</description>
@@ -121,7 +121,7 @@
 	<!-- starter-thymeleaf a ne pas enlever -->
 </dependencies>
 <build>
-	<finalName>lab-githubaction-docker-hub</finalName>
+	<finalName>lab-github-action-docker-hub</finalName>
 	<plugins>
 		<plugin>
 			<groupId>org.springframework.boot</groupId>
