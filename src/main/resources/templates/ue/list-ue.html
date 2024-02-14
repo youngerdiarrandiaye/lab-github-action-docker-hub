@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1.html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.js"></script>
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap-icons/1.10.3/font/bootstrap-icons.css">
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>UE</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!--  contenue -->
+    <div class="p-3">
+        <div class="card mt-5 mb-5">
+            <div class="card-header">Liste UE</div>
+            <div class="card-body ">
+                <form method="get" th:action="@{/ues/create}">
+                    <button type="submit" class="btn btn-info mb-3 animate__animated animate__bounceIn" style="background-color:#04d9ff;">Ajouter une UE</button>
+                </form>
+                <form method="get" th:action="@{/ues/lists}">
+                    <label>Keyword:</label>
+                    <input type="text" name="keyword" th:value="${#strings.toLowerCase(keyword)}">
+                    <button type="submit" class="btn btn-info">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th> <th>Libelle</th> <th>Code</th> <th>Description</th> <th>Credit</th><th>Coef</th>
+                    </tr>
+                    <tr th:each="p:${ues}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.libelle}"></td>
+                        <td th:text="${p.code}"></td>
+                        <td th:text="${p.description}"></td>
+                        <td th:text="${p.credit}"></td>
+                        <td th:text="${p.coefficient}"></td>
+                        <td>
+                            <a onclick="javascript:return confirm('Etes vous sure de vouloir supprimer l\'UE ?')"
+                               th:href="@{/ues/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+
+                        </td>
+                        <td >
+                            <a class="btn btn-success"
+                               th:href="@{/admin/editPatient(id=${p.id})}">Edit</a>
+                        </td>
+                        <td>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#voirdetails">Voir Détails</a>
+                        </td>
+
+                    </tr>
+                    </thead>
+                </table>
+                <ul class="nav nav-pills">
+                 <li th:each="v,item:${pages}">
+                        <a th:href="@{/ues/lists(page=${item.index},keyword=${keyword})}"
+                           th:class="${(currentPage==item.index)?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+                           th:text="${1+item.index}"></a>
+                 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--  contenue -->
+</div>
+
+<!-- popup voir details -->
+<div class="modal fade" id="voirdetails" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color:  #8BA503;">
+                <img id="image-1" alt="" src="public/media/acc_candidats1.jpg" />
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+            </div>
+            <!-- update creation cv  -->
+        </div>
+    </div>
+</div>
+<!-- popup voir details -->
+</body>
+</html>

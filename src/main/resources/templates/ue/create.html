@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle UE</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row mt-3">
+        <div class="col-md-6 offset-3">
+            <div class="card">
+                <div class="card-header" style="background-color:#cdd3d3;">Nouvelle UE</div>
+                <div class="card-body">
+                    <div class="p-3">
+                        <form th:action="@{/ues/create}" method="post">
+                            <div class="mb-2">
+                                <label class="form-label">Libelle</label>
+                                <input type="text" name="libelle" class="form-control" th:value="${ueDTO.libelle}">
+                                <span class="text-danger" th:errors="${ueDTO.libelle}"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Code</label>
+                                <input type="text" name="code" class="form-control" th:value="${ueDTO.code}">
+                                <span class="text-danger" th:errors="${ueDTO.code}"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" th:value="${ueDTO.description}"></textarea>
+                                <span class="text-danger" th:errors="${ueDTO.description}"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Crédit</label>
+                                <input type="number" name="credit" class="form-control" th:value="${ueDTO.credit}">
+                                <span class="text-danger" th:errors="${ueDTO.credit}"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Coefficient</label>
+                                <input type="number" name="coefficient" class="form-control" th:value="${ueDTO.coefficient}">
+                                <span class="text-danger" th:errors="${ueDTO.coefficient}"></span>
+                            </div>
+                            <!-- Ajoutez d'autres champs selon vos besoins -->
+
+                            <button class="btn btn-success">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

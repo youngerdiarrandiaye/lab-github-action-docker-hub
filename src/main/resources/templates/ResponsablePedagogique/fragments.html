@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="fr" class="minimal-theme" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/img/uaszlogo.png" type="image/png" />
+  <!--plugins-->
+  <link th:href="@{/assets/plugins/simplebar/css/simplebar.css}" rel="stylesheet" />
+  <link th:href="@{/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css}" rel="stylesheet" />
+<!--  <link th:href="@{/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css}" rel="stylesheet" />-->
+  <!-- Bootstrap CSS -->
+  <link th:href="@{/assets/css/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/css/bootstrap-extended.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/css/style.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/css/icons.css}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <!-- loader-->
+  <link th:href="@{/assets/css/css/pace.min.css}" rel="stylesheet" />
+
+  <!-- base-->
+ <!-- <base href="http://localhost:8080/sn/uasz/v1/users-api/">-->
+  <base href="http://localhost:8085/">
+  <!-- /base-->
+
+  <!--Theme Styles-->
+  <link th:href="@{/assets/css/ccs/dark-theme.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/css/light-theme.css}" rel="stylesheet" />
+   <link th:href="@{/assets/css/css/semi-dark.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/css/header-colors.css}" rel="stylesheet" />
+
+  <link th:href="@{/assets/css/css/jquery.dataTables.min.css}" rel="stylesheet" />
+
+  <title>Uasz - Responsable Pedagogique</title>
+</head>
+
+<body>
+
+
+<!--start wrapper-->
+<div class="wrapper">
+  <!--start top header-->
+  <header th:fragment="topHeader" class="top-header">
+    <nav class="navbar navbar-expand">
+      <div class="mobile-toggle-icon d-xl-none">
+        <i class="bi bi-list"></i>
+      </div>
+      <div class="top-navbar d-none d-xl-block">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/templates/ResponsablePedagogique/index}">Dashboard</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-xl-none ms-auto">
+
+      </div>
+      <form class="searchbar d-none d-xl-flex ms-auto">
+       <!-- <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><i class="bi bi-search"></i></div>
+        <input class="form-control" type="text" placeholder="Type here to search">
+        <div class="position-absolute top-50 translate-middle-y d-block d-xl-none search-close-icon"><i class="bi bi-x-lg"></i></div>-->
+      </form>
+      <div class="top-navbar-right ms-3">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item dropdown dropdown-large">
+            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"  data-bs-toggle="dropdown">
+              <div class="user-setting d-flex align-items-center gap-1">
+                <img src="img/defaultUser.png" class="user-img" alt="">
+                <div class="user-name d-none d-sm-block">[[*{nomResponsalePedagogique}]]</div>
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item">
+                  <div class="d-flex align-items-center">
+                    <img src="img/defaultUser.png" alt="" class="rounded-circle" width="60" height="60">
+                    <div class="ms-3">
+                      <h6 class="mb-0 dropdown-user-name">[[*{nomResponsalePedagogique}]]</h6>
+                      <small class="mb-0 dropdown-user-designation text-secondary">ResponsalePedagogique</small>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" th:href="@{/templates/ResponsablePedagogique/profile}">
+                  <div class="d-flex align-items-center">
+                    <div class="setting-icon"><i class="bi bi-person-fill"></i></div>
+                    <div class="setting-text ms-3"><span>Profile</span></div>
+                  </div>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" th:href="@{/logout}">
+                  <div class="d-flex align-items-center">
+                    <div class="setting-icon"><i class="bi bi-lock-fill"></i></div>
+                    <div class="setting-text ms-3"><span>Deconnexion</span></div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropdown-large">
+            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"  data-bs-toggle="dropdown">
+              <div class="projects">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+              <div class="row row-cols-3 gx-2">
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-classes}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-primary bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Classes</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-cycle}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Cycle</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-ec}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">EC</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-filieres}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Filiere</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-Formation}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Formation</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-groupe}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Groupe</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-maquette}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Maquette</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-module}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Module</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-niveau}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Niveau</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-semestre}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Semestre</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/list-ue}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-success bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">UE</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a th:href="@{/templates/ResponsablePedagogique/profile}">
+                    <div class="apps p-2 radius-10 text-center">
+                      <div class="apps-icon-box mb-1 text-white bg-danger  bg-gradient">
+                        <i class="bi "></i>
+                      </div>
+                      <p class="mb-0 apps-name">Compte</p>
+                    </div>
+                  </a>
+                </div>
+              </div><!--end row-->
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!--end top header-->
+
+  <!--start sidebar -->
+  <aside th:fragment="sidebarWrapper" class="sidebar-wrapper">
+    <div class="iconmenu">
+      <div class="nav-toggle-box">
+        <div class="nav-toggle-icon"><i class="bi bi-list"></i></div>
+      </div>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Responsable Pedagogique">
+          <button class="nav-link" data-bs-toggle="pill" data-bs-target="#" type="button"><i class="bi bi-bag-check-fill"></i></button>
+        </li>
+      </ul>
+    </div>
+    <div class="textmenu">
+      <div class="brand-logo">
+        <img th:src="@{assets/img/uaszLogo.png}" width="50"  alt=""/>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade" id="pills-enseignement">
+          <div class="list-group list-group-flush">
+            <div class="list-group-item">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-0">Responsable Pedagogique</h5>
+              </div>
+              <small class="mb-0">Certains contenus d'espace réservé</small>
+            </div>
+            <a th:href="@{/templates/ResponsablePedagogique/list-classes}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Classes</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-cycle}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Cycles</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-ec}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des ECs</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-filieres}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Filieres</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-formation}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Formations</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-groupe}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Groupes</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-maquette}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Maquette</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-module}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Modules</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-niveau}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Niveaux</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-semestre}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des Semestres</a>
+            <a th:href="@{/templates/ResponsablePedagogique/list-ue}" class="list-group-item"><i class="bi bi-plus-square"></i>Gestion des UEs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!--start sidebar -->
+
+  <!--start content-->
+<!--  <main th:fragment="startContent" class="page-content">-->
+
+
+
+<!--      <div class="row">-->
+<!--        <div class="col-12 col-lg-6 col-xl-6 d-flex">-->
+<!--          <div class="card radius-10 w-100">-->
+<!--            <div class="card-body">-->
+<!--              <div class="row g-3 align-items-center">-->
+<!--                <div class="col">-->
+
+<!--                </div>-->
+<!--                <div class="col">-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="row row-cols-1 row-cols-md-3 g-3 mt-4">-->
+<!--                <div class="col text-center">-->
+<!--                  <div class="w_chart" id="chart3" data-percent="68">-->
+
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--                <div class="col text-center">-->
+<!--                  <div class="w_chart" id="chart4" data-percent="78">-->
+
+<!--                  </div>-->
+<!--                  <h5 class="my-9 text-success">[[*{nbrClasse}]]</h5>-->
+<!--                  <p class="mb-0 font-13">Classes</p>-->
+
+<!--                </div>-->
+<!--                <div class="col text-center">-->
+<!--                  <div class="w_chart" id="chart5" data-percent="46">-->
+
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="bg-light p-3 radius-10 mt-3">-->
+<!--                <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i class="bi "></i>-->
+<!--                </div>              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--          <div class="col-12 col-lg-6 col-xl-6 d-flex">-->
+<!--            <div class="card radius-10 w-100">-->
+<!--              <div class="card-body">-->
+<!--                <div class="row g-3 align-items-center">-->
+<!--                  <div class="col">-->
+
+<!--                  </div>-->
+<!--                  <div class="col">-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row row-cols-1 row-cols-md-3 g-3 mt-4">-->
+<!--                  <div class="col text-center">-->
+<!--                    <div class="w_chart" id="chart3" data-percent="68">-->
+
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                  <div class="col text-center">-->
+<!--                    <div class="w_chart" id="chart4" data-percent="78">-->
+
+<!--                    </div>-->
+<!--                    <h5 class="my-6 text-success">[[*{cycle}]]</h5>-->
+<!--                    <p class="mb-0 font-13"> Commandes Specifiques</p>-->
+
+<!--                  </div>-->
+<!--                  <div class="col text-center">-->
+<!--                    <div class="w_chart" id="chart5" data-percent="46">-->
+
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="bg-light p-3 radius-10 mt-3">-->
+<!--                  <div class="widget-icon-large bg-gradient-danger text-white ms-auto"><i class="bi "></i>-->
+<!--                  </div>              </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--      </div>-->
+
+<!--      <div class="col">-->
+<!--        <div class="card radius-10">-->
+<!--          <div class="card-body">-->
+<!--            <div class="d-flex align-items-center">-->
+<!--              <div>-->
+<!--                <p class="mb-0 text-secondary"></p>-->
+<!--                <h4 class="my-1 text-success"></h4>-->
+<!--              </div>-->
+<!--              <div class="widget-icon-large bg-gradient-danger text-white"><i class="bi "></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--  </main>-->
+  <!--end page main-->
+
+
+  <!--start overlay-->
+  <div th:fragment="navToggleIcon" class="overlay nav-toggle-icon"></div>
+  <!--end overlay-->
+
+  <!--Start Back To Top Button-->
+  <a th:fragment="backToTop" href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+  <!--End Back To Top Button-->
+
+  <!--start switcher-->
+  <div th:fragment="switcherBody"  class="switcher-body">
+    <button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-paint-bucket me-0"></i></button>
+    <div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Personnaliser</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h6 class="mb-0">Theme Variation</h6>
+        <hr>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="SemiDarkTheme" value="option3">
+          <label class="form-check-label" for="SemiDarkTheme">Semi Dark</label>
+        </div>
+        <hr>
+        <hr/>
+        <h6 class="mb-0">Header Colors</h6>
+        <hr/>
+        <div class="header-colors-indigators">
+          <div class="row row-cols-auto g-3">
+            <div class="col">
+              <div class="indigator headercolor2" id="headercolor2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end switcher-->
+</div>
+
+<!--end wrapper-->
+<div th:fragment="modalDelete" class="modal" tabindex="-1" role="dialog" id="deleteModa" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation de la suppression</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>êtes-vous sûr de vouloir supprimer l'enregistrement sélectionné.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="btn btn-danger" id="deleteId">Oui,Supprimer</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap bundle JS -->
+<div th:fragment="footerScript">
+    <script th:src="@{/assets/js/js/bootstrap.bundle.min.js}"></script>
+
+    <!--plugins-->
+    <script th:src="@{/assets/js/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/plugins/simplebar/js/simplebar.min.js}"></script>
+    <script th:src="@{/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js}"></script>
+    <script th:src="@{/assets/js/js/pace.min.js}"></script>
+<!--    <script th:src="@{/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js}"></script>-->
+<!--    <script th:src="@{/assets/plugins/apexcharts-bundle/js/apexcharts.min.js}"></script>-->
+    <!--app-->
+    <script th:src="@{/assets/js/js/app.js}"></script>
+    <script th:src="@{/assets/js/js/index.js}"></script>
+
+    <script th:src="@{/assets/js/js/jquery.dataTables.min.js}"></script>
+      <script th:src="@{/assets/js/main.js}"></script>
+<!--    <script>-->
+<!--         new PerfectScrollbar(".best-product")-->
+<!--         new PerfectScrollbar(".top-sellers-list")-->
+<!--      </script>-->
+
+</div>
+</body>
+
+</html>
